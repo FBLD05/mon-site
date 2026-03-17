@@ -1,4 +1,2 @@
-node_modules/
-.env
-Thumbs.db
-.DS_Store
+test.html
+test1.css
