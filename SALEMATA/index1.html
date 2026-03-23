@@ -7,117 +7,175 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+
     body { background:#f5f5f0; }
 
-    header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:white; border-radius:20px; margin:20px; }
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 50px;
+      background:white;
+      border-radius:20px;
+      margin:20px;
+    }
 
-    .btn { background:#2e5d34; color:white; padding:10px 20px; border-radius:20px; cursor:pointer; border:none; }
+    header h2 { color:#2e5d34; }
 
-    .products { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; padding:20px; }
+    nav a {
+      margin:0 15px;
+      text-decoration:none;
+      color:#333;
+      font-weight:500;
+    }
 
-    .card { background:white; padding:20px; border-radius:20px; text-align:center; }
+    .hero {
+      height:80vh;
+      background:url('C:\\Users\\DRAME\\Desktop\\mon-site\\SALEMATA\\images\\Z.jpeg') center/cover;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:20px;
+      margin:20px;
+      color:white;
+      text-align:center;
+    }
 
-    .card img { width:100%; height:180px; object-fit:cover; border-radius:15px; }
+    .hero h1 { font-size:3rem; }
+    .hero p { margin:15px 0; }
 
-    #cart {
-      position:fixed;
-      right:20px;
-      bottom:20px;
+    .btn {
       background:#2e5d34;
       color:white;
-      padding:15px;
-      border-radius:50%;
-      cursor:pointer;
+      padding:12px 25px;
+      border-radius:25px;
+      text-decoration:none;
     }
 
-    #cartBox {
-      position:fixed;
-      right:20px;
-      bottom:80px;
-      width:300px;
+    .section { padding:50px; }
+
+    .products {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card {
       background:white;
       padding:20px;
-      border-radius:15px;
-      display:none;
-      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+      border-radius:20px;
+      text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
     }
 
-    #cartBox ul { list-style:none; margin:10px 0; }
+    .card img {
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:15px;
+    }
 
+    .card h3 { margin:10px 0 5px; }
+
+    .card p {
+      margin-bottom:15px;
+      font-weight:600;
+    }
+
+    .card .btn {
+      display:inline-block;
+      margin-top:10px;
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      background:#2e5d34;
+      color:white;
+      margin-top:30px;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <h2>Salemata</h2>
-  <button onclick="toggleCart()" class="btn">🛒 Panier</button>
+  <nav>
+    <a href="#">Accueil</a>
+    <a href="#produits">Produits</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
-<section class="products">
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1604908176997-4310e8e07b7c">
-    <h3>Huile de coco</h3>
-    <p>5000 FCFA</p>
-    <button class="btn" onclick="addToCart('Huile de coco', 5000)">Ajouter</button>
+<section class="hero">
+  <div>
+    <h1>Produits locaux du Sénégal</h1>
+    <p>Naturels, authentiques et faits avec passion</p>
+    <a href="#produits" class="btn">Voir les produits</a>
   </div>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1590080877777-4c4b6b1a7b65">
-    <h3>Bissap</h3>
-    <p>3000 FCFA</p>
-    <button class="btn" onclick="addToCart('Bissap', 3000)">Ajouter</button>
-  </div>
-
 </section>
 
-<div id="cart">🛒</div>
+<section class="section" id="produits">
+  <h2>Nos Produits</h2>
+  <div class="products">
+    <div class="card">
+      <img src="C:\Users\DRAME\Desktop\mon-site\SALEMATA\images\Q.jpeg">
+      <h3>Miel</h3>
+      <p>5000 FCFA</p>
+      <a class="btn" href="#">Commander</a>
+    </div>
 
-<div id="cartBox">
-  <h3>Panier</h3>
-  <ul id="cartItems"></ul>
-  <p id="total"></p>
-  <button class="btn" onclick="orderWhatsApp()">Commander</button>
-</div>
+    <div class="card">
+      <img src="C:\Users\DRAME\Desktop\mon-site\SALEMATA\images\RR.jpeg">
+      <h3>Pain de singe "bouille"</h3>
+      <p>3000 FCFA</p>
+      <a class="btn" href="#">Commander</a>
+    </div>
 
-<script>
-  let cart = [];
+    <div class="card">
+      <img src="C:\Users\DRAME\Desktop\mon-site\SALEMATA\images\n.jpeg">
+      <h3>Fonio</h3>
+      <p>3000 FCFA</p>
+      <a class="btn" href="#">Commander</a>
+    </div>
 
-  function addToCart(name, price) {
-    cart.push({name, price});
-    alert(name + ' ajouté au panier');
-  }
+    <div class="card">
+      <img src="C:\Users\DRAME\Desktop\mon-site\SALEMATA\images\k.jpeg">
+      <h3>Lathirie</h3>
+      <p>3000 FCFA</p>
+      <a class="btn" href="#">Commander</a>
+    </div>
 
-  function toggleCart() {
-    const box = document.getElementById('cartBox');
-    box.style.display = box.style.display === 'block' ? 'none' : 'block';
-    displayCart();
-  }
+    <div class="card">
+      <img src="C:\Users\DRAME\Desktop\mon-site\SALEMATA\images\m.jpeg">
+      <h3>Mais</h3>
+      <p>3000 FCFA</p>
+      <a class="btn" href="#">Commander</a>
+    </div>
 
-  function displayCart() {
-    const list = document.getElementById('cartItems');
-    const totalEl = document.getElementById('total');
-    list.innerHTML = '';
-    let total = 0;
+    <div class="card">
+      <img src="C:\Users\DRAME\Desktop\mon-site\SALEMATA\images\tt.jpeg">
+      <h3>Beurre de karité</h3>
+      <p>4000 FCFA</p>
+      <a class="btn" href="#">Commander</a>
+    </div>
+  </div>
+</section>
 
-    cart.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item.name + ' - ' + item.price + ' FCFA';
-      list.appendChild(li);
-      total += item.price;
-    });
+<section class="section" id="apropos">
+  <h2>À propos</h2>
+  <p>Salemata valorise les produits locaux du Sénégal en offrant qualité et authenticité.</p>
+</section>
 
-    totalEl.textContent = 'Total: ' + total + ' FCFA';
-  }
+<section class="section" id="contact">
+  <h2>Contact</h2>
+  <p>WhatsApp : +221 78 832 97 47</p>
+</section>
 
-  function orderWhatsApp() {
-    let message = 'Commande:%0A';
-    cart.forEach(item => {
-      message += item.name + ' - ' + item.price + ' FCFA%0A';
-    });
-    window.open('https://wa.me/221XXXXXXXXX?text=' + message);
-  }
-</script>
+<footer>
+  <p>©FBLD Salemata 2026 </p>
+</footer>
 
 </body>
 </html>
